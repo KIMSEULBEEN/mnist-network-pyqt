@@ -1,4 +1,4 @@
-# opencv-mnist-network
+# mnist-network-pyqt
 Deep Learning based number recognition program
 
 ## Development Period
