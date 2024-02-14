@@ -81,9 +81,14 @@ class Net(nn.Module):
         img_tensor = np.zeros([1, 1, 28, 28], dtype=np.double)
         img_tensor[0, 0, :, :] = image
         t = torch.from_numpy(img_tensor).float()
-        prediction = (int)(self(t).argmax(dim=1, keepdim=True)[0][0])
-        print(prediction)
-        return prediction
+
+        softmax = nn.Softmax(dim=1)
+        predictions = softmax(self(t))
+        prediction = (int)(predictions.argmax(dim=1, keepdim=True)[0][0])
+        predictions = predictions[0].tolist()
+
+        print(prediction, predictions)
+        return prediction, predictions
 
 def main():
     def set_args():
